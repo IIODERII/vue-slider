@@ -31,11 +31,36 @@ createApp({
         },
       ],
       currentSlide: 0,
+      changeImage: setInterval(this.slidePlus, 3000),
     };
   },
   methods: {
     isActive(i) {
       return i === this.currentSlide ? "active" : "";
     },
+    slidePlus() {
+      if (this.currentSlide < this.slides.length - 1) {
+        this.currentSlide++;
+      } else {
+        this.currentSlide = 0;
+      }
+    },
+    slideMinus() {
+      if (this.currentSlide > 0) {
+        this.currentSlide--;
+      } else {
+        this.currentSlide = this.slides.length - 1;
+      }
+    },
+    directChange(i) {
+      this.currentSlide = i;
+      //   clearInterval(this.changeImage);
+      //   restartInterval = setInterval(this.slidePlus, 1000);
+      //   setTimeout(this.changeImage, 3000);
+      //   this.changeImage();
+    },
+  },
+  mounted() {
+    //setInterval(this.slidePlus, 1000);
   },
 }).mount("#app");
