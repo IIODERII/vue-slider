@@ -31,7 +31,6 @@ createApp({
         },
       ],
       currentSlide: 0,
-      changeImage: setInterval(this.slidePlus, 3000),
     };
   },
   methods: {
@@ -39,28 +38,18 @@ createApp({
       return i === this.currentSlide ? "active" : "";
     },
     slidePlus() {
-      if (this.currentSlide < this.slides.length - 1) {
-        this.currentSlide++;
-      } else {
-        this.currentSlide = 0;
-      }
+      this.currentSlide =
+        this.currentSlide < this.slides.length - 1 ? this.currentSlide + 1 : 0;
     },
     slideMinus() {
-      if (this.currentSlide > 0) {
-        this.currentSlide--;
-      } else {
-        this.currentSlide = this.slides.length - 1;
-      }
+      this.currentSlide =
+        this.currentSlide > 0 ? this.currentSlide - 1 : this.slides.length - 1;
     },
-    directChange(i) {
-      this.currentSlide = i;
-      //   clearInterval(this.changeImage);
-      //   restartInterval = setInterval(this.slidePlus, 1000);
-      //   setTimeout(this.changeImage, 3000);
-      //   this.changeImage();
-    },
+    // directChange(i) {
+    //   this.currentSlide = i;
+    // },
   },
   mounted() {
-    //setInterval(this.slidePlus, 1000);
+    changeImage = setInterval(this.slidePlus, 5000);
   },
 }).mount("#app");
