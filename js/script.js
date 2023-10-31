@@ -31,6 +31,7 @@ createApp({
         },
       ],
       currentSlide: 0,
+      changeImage: null,
     };
   },
   methods: {
@@ -45,11 +46,17 @@ createApp({
       this.currentSlide =
         this.currentSlide > 0 ? this.currentSlide - 1 : this.slides.length - 1;
     },
-    // directChange(i) {
-    //   this.currentSlide = i;
-    // },
+    directChange(i) {
+      this.currentSlide = i;
+    },
+    startAutoPlay() {
+      this.changeImage = setInterval(this.slidePlus, 3000);
+    },
+    stopAutoPlay() {
+      clearInterval(this.changeImage);
+    },
   },
   mounted() {
-    changeImage = setInterval(this.slidePlus, 5000);
+    this.startAutoPlay();
   },
 }).mount("#app");
